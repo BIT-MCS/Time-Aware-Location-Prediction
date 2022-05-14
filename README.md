@@ -23,10 +23,10 @@ For example, you can control the length of check-in sequences by modifying this 
 	[41]  'seq_len': 8,
 	```
 2. Using the following commands to process the original datasets and generalize the data for t-LocPred.
-```bash
-cd one_day_data_general
-python main.py
-```
+	```bash
+	cd one_day_data_general
+	python main.py
+	```
 ## :computer: Training
 
 We provide complete training codes for t-LocPred.<br>
