@@ -32,13 +32,13 @@ For example, you can control the length of check-in sequences by modifying this 
 We provide complete training codes for t-LocPred.<br>
 You could adapt it to your own needs.
 
-1. If you don't have NVIDIA RTX 3090, you should comment these two lines in file [utils.py](https://github.com/BIT-MCS/Time-Aware-Location-Prediction/utils.py).
+1. If you don't have NVIDIA RTX 3090, you should comment these two lines in file [utils.py](https://github.com/BIT-MCS/Time-Aware-Location-Prediction/blob/main/step2model/utils.py).
 	```
 	[19]  torch.backends.cuda.matmul.allow_tf32 = False
 	[20]  torch.backends.cudnn.allow_tf32 = False
 	```
 2. You can modify the config files 
-[step1model/ConvAOI/conf.py](https://github.com/BIT-MCS/Time-Aware-Location-Prediction/step1model/ConvAOI/conf.py).<br>
+[step1model/ConvAOI/conf.py](https://github.com/BIT-MCS/Time-Aware-Location-Prediction/blob/main/step1model/ConvAOI/conf.py).<br>
 For example, you can control the hyperparameter about CNN kernal size in convolutional AoI modeling module by modifying this line:
 	```
 	[31]  'cnn_kernel_size': 3,
