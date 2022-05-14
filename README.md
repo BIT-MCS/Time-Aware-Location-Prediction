@@ -1,7 +1,7 @@
 # Time-Aware-Location-Prediction
 Additional materials for paper "Time-Aware Location Prediction by Convolutional Area-of-Interest Modeling and Memory-Augmented Attentive LSTM" submitted to TKDE 2022.
 ## :page_facing_up: Description
-t-LocPred is a novel time-aware location prediction model for Point of Interests (POIs) recommendation.It consists of a convolutional AoI modeling module and memory-augmented attentive LSTM. It captures both coarse- and fine-grained spatiotemporal correlations among a user’s historical check-ins and models his/her long-term movement patterns. 
+t-LocPred is a novel time-aware location prediction model for Point of Interests (POIs) recommendation. It consists of a convolutional AoI modeling module and memory-augmented attentive LSTM. It captures both coarse- and fine-grained spatiotemporal correlations among a user’s historical check-ins and models his/her long-term movement patterns. 
 ## :wrench: Dependencies
 - Python == 3.7 (Recommend to use [Anaconda](https://www.anaconda.com/download/#linux) or [Miniconda](https://docs.conda.io/en/latest/miniconda.html))
 - [PyTorch == 1.8.1](https://pytorch.org/)
