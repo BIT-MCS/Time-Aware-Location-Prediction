@@ -16,7 +16,7 @@ t-LocPred is a novel time-aware location prediction model for Point of Interests
     ```
     pip install -r requirements.txt
     ```
-## Data Preparation
+## :cd: Data Preparation
 1. You can modify the config file [one_day_data_general/conf.py](https://github.com/BIT-MCS/Time-Aware-Location-Prediction/blob/main/one_day_data_general/conf.py) for data preparation.
 For example, you can control the length of check-in sequences by modifying this line:
 	```
