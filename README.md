@@ -1,7 +1,7 @@
 # Time-Aware-Location-Prediction
 Additional materials for paper "Time-Aware Location Prediction by Convolutional Area-of-Interest Modeling and Memory-Augmented Attentive LSTM" submitted to TKDE 2022.
 ## :page_facing_up: Description
-t-LocPred is a novel time-aware location prediction model for Point of Interests (POIs) recommendation. It consists of a convolutional AoI modeling module and memory-augmented attentive LSTM. It captures both coarse- and fine-grained spatiotemporal correlations among a user’s historical check-ins and models his/her long-term movement patterns. 
+t-LocPred is a novel time-aware location prediction model for Point of Interests (POIs) recommendation. It consists of a convolutional AoI modeling module (ConvAOI) and memory-augmented attentive LSTM (mem-attLSTM). It captures both coarse- and fine-grained spatiotemporal correlations among a user’s historical check-ins and models his/her long-term movement patterns. 
 ## :wrench: Dependencies
 - Python == 3.7 (Recommend to use [Anaconda](https://www.anaconda.com/download/#linux) or [Miniconda](https://docs.conda.io/en/latest/miniconda.html))
 - [PyTorch == 1.8.1](https://pytorch.org/)
@@ -16,78 +16,54 @@ t-LocPred is a novel time-aware location prediction model for Point of Interests
     ```
     pip install -r requirements.txt
     ```
-## :zap: Quick Inference
-
-Get the usage information of the project
+## Data Preparation
+1. You can modify the config file [one_day_data_general/conf.py](https://github.com/BIT-MCS/Time-Aware-Location-Prediction/one_day_data_general/conf.py) for data preparation.
+For example, you can control the length of check-in sequences by modifying this line:
+	```
+	[41]  'seq_len': 8,
+	```
+2. Using the following commands to process the original datasets and generalize the data for t-LocPred.
 ```bash
-cd code
-python main.py -h
-```
-Then the usage information will be shown as following
-```
-usage: main.py [-h] env_name method_name mode
-
-positional arguments:
-  env_name     the name of environment (KAIST or NCSU)
-  method_name  the name of method (fd_mappo_cubicmap)
-  mode         train or test
- 
-optional arguments:
-  -h, --help   show this help message and exit
-```
-Test the trained models provided in [human_drone_SC/log](https://github.com/Richard19980527/human_drone_SC/tree/main/log).
-```
-python main.py KAIST fd_mappo_cubicmap test
-python main.py NCSU fd_mappo_cubicmap test
+cd one_day_data_general
+python main.py
 ```
 ## :computer: Training
 
-We provide complete training codes for FD-MAPPO (Cubic Map).<br>
+We provide complete training codes for t-LocPred.<br>
 You could adapt it to your own needs.
 
-1. If you don't have NVIDIA RTX 3090, you should comment these two lines in file
-[human_drone_SC/code/util.py](https://github.com/Richard19980527/human_drone_SC/tree/main/code/util.py).
+1. If you don't have NVIDIA RTX 3090, you should comment these two lines in file [utils.py](https://github.com/BIT-MCS/Time-Aware-Location-Prediction/utils.py).
 	```
-	[24]  torch.backends.cuda.matmul.allow_tf32 = False
-	[25]  torch.backends.cudnn.allow_tf32 = False
+	[19]  torch.backends.cuda.matmul.allow_tf32 = False
+	[20]  torch.backends.cudnn.allow_tf32 = False
 	```
 2. You can modify the config files 
-[human_drone_SC/code/environment/KAIST/conf.py](https://github.com/Richard19980527/human_drone_SC/tree/main/code/environment/KAIST/conf.py) and
-[human_drone_SC/code/environment/NCSU/conf.py](https://github.com/Richard19980527/human_drone_SC/tree/main/code/environment/NCSU/conf.py) for environments.<br>
-For example, you can control the number of drones in the environment by modifying this line
+[step1model/ConvAOI/conf.py](https://github.com/BIT-MCS/Time-Aware-Location-Prediction/step1model/ConvAOI/conf.py).<br>
+For example, you can control the hyperparameter about CNN kernal size in convolutional AoI modeling module by modifying this line:
 	```
-	[43]  'uav_num': 6,
+	[31]  'cnn_kernel_size': 3,
 	```
-3. You can modify the config file 
-[human_drone_SC/code/method/fd_mappo_cubicmap/conf.py](https://github.com/Richard19980527/human_drone_SC/tree/main/code/method/fd_mappo_cubicmap/conf.py) for method.<br>
-For example, you can control the hyperparameters studied in paper by modifying these two lines
+3. Training the ConvAOI module:
 	```
-	[34]  'M_size': [16, 16, 16],  # Z, X, Y
-	[35]  'mtx_size': 3,  # X' (Y')
+	cd step1model/ConvAOI
+	python main.py
 	```
-4. Training
+4. Training the mem-attLSTM module:
 	```
-	python main.py KAIST fd_mappo_cubicmap train
-	python main.py NCSU fd_mappo_cubicmap train
+	cd step2model/mem-attLSTM
+	python main.py
 	```
-	The log files will be stored in [human_drone_SC/log](https://github.com/Richard19980527/human_drone_SC/tree/main/log).
 ## :checkered_flag: Testing
-1. Before testing, you should modify the file [human_drone_SC/code/env_method_set.py](https://github.com/Richard19980527/human_drone_SC/tree/main/code/env_method_set.py) to ensure the datetime of the version you want to test is right.
+1. Running the ConvAOI module:
 	```
-	[2]  'KAIST/fd_mappo_cubicmap': '2021-05-27/23-48-01',
-	[3]  'NCSU/fd_mappo_cubicmap': '2021-05-20/16-56-41',
+	cd step1model/ConvAOI
+	python test.py
 	```
-2. Testing
+2. Running the mem-attLSTM module:
 	```
-	python main.py KAIST fd_mappo_cubicmap test
-	python main.py NCSU fd_mappo_cubicmap test
+	cd step2model/mem-attLSTM
+	python test.py
 	```
-## :scroll: Acknowledgement
-
-This work is supported by the National Natural Science Foundation of China (No. 62022017). 
-<br>
-Corresponding author: Chi Harold Liu.
-
 ## :e-mail: Contact
 
 If you have any question, please email `2656886245@qq.com`.
