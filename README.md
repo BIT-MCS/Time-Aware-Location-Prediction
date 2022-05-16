@@ -67,3 +67,18 @@ For example, you can control the hyperparameter about CNN kernal size in convolu
 ## :e-mail: Contact
 
 If you have any question, please email `2656886245@qq.com`.
+## Paper
+If you are interested in our work, please cite our paper as
+
+```
+@ARTICLE{9128016,
+  author={Liu, Chi Harold and Wang, Yu and Piao, Chengzhe and Dai, Zipeng and Yuan, Ye and Wang, Guoren and Wu, Dapeng},
+  journal={IEEE Transactions on Knowledge and Data Engineering}, 
+  title={Time-Aware Location Prediction by Convolutional Area-of-Interest Modeling and Memory-Augmented Attentive LSTM}, 
+  year={2022},
+  volume={34},
+  number={5},
+  pages={2472-2484},
+  doi={10.1109/TKDE.2020.3005735}
+}
+```
