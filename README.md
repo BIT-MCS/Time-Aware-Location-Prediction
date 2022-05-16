@@ -1,5 +1,5 @@
 # Time-Aware-Location-Prediction
-Additional materials for paper "Time-Aware Location Prediction by Convolutional Area-of-Interest Modeling and Memory-Augmented Attentive LSTM" accepted by TKDE 2022.
+This work "Time-Aware Location Prediction by Convolutional Area-of-Interest Modeling and Memory-Augmented Attentive LSTM" has been published in TKDE 2022.
 ## :page_facing_up: Description
 t-LocPred is a novel time-aware location prediction model for Point of Interests (POIs) recommendation. It consists of a convolutional AoI modeling module (ConvAOI) and memory-augmented attentive LSTM (mem-attLSTM). It captures both coarse- and fine-grained spatiotemporal correlations among a user’s historical check-ins and models his/her long-term movement patterns. 
 ## :wrench: Dependencies
